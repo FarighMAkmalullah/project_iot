@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future hidupkanColokan1() async {
     return await http.get(Uri.parse(
-        "https://sgp1.blynk.cloud/external/api/update?token=AM7dOPmL3bwj8JxCK8rf0aboN7HwjkVv&v0=1"));
+        "https://sgp1.blynk.cloud/external/api/update?token=AM7dOPmL3bwj8JxCK8rf0aboN7HwjkVv&v4=1"));
   }
 
   Future hidupkanColokan2() async {
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future matikanColokan1() async {
     return await http.get(Uri.parse(
-        "https://sgp1.blynk.cloud/external/api/update?token=AM7dOPmL3bwj8JxCK8rf0aboN7HwjkVv&v0=0"));
+        "https://sgp1.blynk.cloud/external/api/update?token=AM7dOPmL3bwj8JxCK8rf0aboN7HwjkVv&v4=0"));
   }
 
   Future matikanColokan2() async {
@@ -256,7 +256,7 @@ class _MyHomePageState extends State<MyHomePage> {
         koneksiVar = response.body;
       });
     } else {
-      throw Exception('Failed to load Album');
+      throw Exception('Failed to load Microcontroller');
     }
   }
 
@@ -287,17 +287,19 @@ class _MyHomePageState extends State<MyHomePage> {
       _lastWords = result.recognizedWords;
     });
     if (result.recognizedWords.toLowerCase() == "hidupkan lampu satu" ||
-        result.recognizedWords.toLowerCase() == "hidupkan lampu 1") {
+        result.recognizedWords.toLowerCase() == "hidupkan lampu 1" ||
+        result.recognizedWords.toLowerCase() == "hidupkan ruang tamu") {
       diskoBerhentiKananKiri();
       diskoBerhentiLampu1();
+      diskoBerhenti4();
       hidupkanLampu1();
 
-      diskoBerhenti4();
       setState(() {
         lampu1 = 1;
       });
     } else if (result.recognizedWords.toLowerCase() == "matikan lampu 1" ||
-        result.recognizedWords.toLowerCase() == "matikan lampu satu") {
+        result.recognizedWords.toLowerCase() == "matikan lampu satu" ||
+        result.recognizedWords.toLowerCase() == "matikan ruang tamu") {
       diskoBerhentiLampu1();
       diskoBerhentiKananKiri();
       matikanLampu1();
@@ -307,7 +309,8 @@ class _MyHomePageState extends State<MyHomePage> {
         lampu1 = 0;
       });
     } else if (result.recognizedWords.toLowerCase() == "hidupkan lampu 2" ||
-        result.recognizedWords.toLowerCase() == "hidupkan lampu dua") {
+        result.recognizedWords.toLowerCase() == "hidupkan lampu dua" ||
+        result.recognizedWords.toLowerCase() == "hidupkan kamar tidur") {
       diskoBerhentiLampu2();
       diskoBerhentiKananKiri();
       hidupkanLampu2();
@@ -316,7 +319,8 @@ class _MyHomePageState extends State<MyHomePage> {
         lampu2 = 1;
       });
     } else if (result.recognizedWords.toLowerCase() == "matikan lampu 2" ||
-        result.recognizedWords == "matikan lampu dua") {
+        result.recognizedWords == "matikan lampu dua" ||
+        result.recognizedWords.toLowerCase() == "matikan kamar tidur") {
       diskoBerhentiLampu2();
       matikanLampu2();
 
@@ -326,25 +330,29 @@ class _MyHomePageState extends State<MyHomePage> {
         lampu2 = 0;
       });
     } else if (result.recognizedWords.toLowerCase() == "hidupkan colokan 1" ||
-        result.recognizedWords.toLowerCase() == "hidupkan colokan satu") {
+        result.recognizedWords.toLowerCase() == "hidupkan colokan satu" ||
+        result.recognizedWords.toLowerCase() == "hidupkan kipas") {
       hidupkanColokan1();
       setState(() {
         colokan1 = 1;
       });
     } else if (result.recognizedWords.toLowerCase() == "matikan colokan 1" ||
-        result.recognizedWords.toLowerCase() == "matikan colokan satu") {
+        result.recognizedWords.toLowerCase() == "matikan colokan satu" ||
+        result.recognizedWords.toLowerCase() == "matikan kipas") {
       matikanColokan1();
       setState(() {
         colokan1 = 0;
       });
     } else if (result.recognizedWords.toLowerCase() == "hidupkan colokan 2" ||
-        result.recognizedWords.toLowerCase() == "hidupkan colokan dua") {
+        result.recognizedWords.toLowerCase() == "hidupkan colokan dua" ||
+        result.recognizedWords.toLowerCase() == "hidupkan charger") {
       hidupkanColokan2();
       setState(() {
         colokan2 = 1;
       });
     } else if (result.recognizedWords.toLowerCase() == "matikan colokan 2" ||
-        result.recognizedWords.toLowerCase() == "matikan colokan dua") {
+        result.recognizedWords.toLowerCase() == "matikan colokan dua" ||
+        result.recognizedWords.toLowerCase() == "matikan charger") {
       matikanLampu2();
       setState(() {
         colokan2 = 0;
@@ -368,7 +376,9 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (result.recognizedWords.toLowerCase() == "kelap-kelip lampu 1" ||
         result.recognizedWords.toLowerCase() == "kelap kelip lampu 1" ||
         result.recognizedWords.toLowerCase() == "kelap-kelip lampu satu" ||
-        result.recognizedWords.toLowerCase() == "kelap kelip lampu satu") {
+        result.recognizedWords.toLowerCase() == "kelap kelip lampu satu" ||
+        result.recognizedWords.toLowerCase() == "kelap-kelip ruang tamu" ||
+        result.recognizedWords.toLowerCase() == "kelap kelip ruang tamu") {
       diskoBerhentiLampu2();
       diskoBerhenti4();
       diskoBerhentiKananKiri();
@@ -376,7 +386,9 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (result.recognizedWords.toLowerCase() == "kelap-kelip lampu 2" ||
         result.recognizedWords.toLowerCase() == "kelap kelip lampu 2" ||
         result.recognizedWords.toLowerCase() == "kelap-kelip lampu dua" ||
-        result.recognizedWords.toLowerCase() == "kelap kelip lampu dua") {
+        result.recognizedWords.toLowerCase() == "kelap kelip lampu dua" ||
+        result.recognizedWords.toLowerCase() == "kelap-kelip kamar tidur" ||
+        result.recognizedWords.toLowerCase() == "kelap kelip kamar tidur") {
       diskoBerhentiLampu1();
       diskoBerhenti4();
       diskoBerhentiKananKiri();
